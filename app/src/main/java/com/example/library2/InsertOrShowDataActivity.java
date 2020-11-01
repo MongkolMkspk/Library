@@ -15,7 +15,9 @@ public class InsertOrShowDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_insert_or_show_data);
         Button showDataButton = findViewById(R.id.show_data_button);
         Button backButton = findViewById(R.id.back_button);
-        Button addButton = findViewById(R.id.add_data_button);
+        Button addButton = findViewById(R.id.update_button);
+        Button updateButton = findViewById(R.id.update_data_button);
+
         showDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,6 +38,13 @@ public class InsertOrShowDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(InsertOrShowDataActivity.this , InsertDataActivity.class);
+                startActivity(intent);
+            }
+        });
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InsertOrShowDataActivity.this , UpdateActivity.class);
                 startActivity(intent);
             }
         });

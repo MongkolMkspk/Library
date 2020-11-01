@@ -18,7 +18,7 @@ public class InsertDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_data);
-        Button addButton = findViewById(R.id.add_data_button);
+        Button addButton = findViewById(R.id.update_button);
         final EditText nameEditText = findViewById(R.id.name_edit_text);
         final EditText lastNameEditText = findViewById(R.id.last_name_edit_text);
         final EditText addressEditText = findViewById(R.id.address_edit_text);

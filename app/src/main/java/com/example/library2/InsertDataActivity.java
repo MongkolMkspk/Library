@@ -1,5 +1,6 @@
 package com.example.library2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -30,20 +31,29 @@ public class InsertDataActivity extends AppCompatActivity {
                 String name = nameEditText.getText().toString();
                 String lastname = lastNameEditText.getText().toString();
                 String address = addressEditText.getText().toString();
-                String status = "ยังไม่คืน";
 
-              final User user = new User(0, name , lastname , address ,status);
+                if(name.length() == 0 || lastname.length() == 0 || address.length() == 0){
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(InsertDataActivity.this);
+                    dialog.setMessage("กรุณากรอกข้อมูล");
+                    dialog.setPositiveButton("Ok" , null);
+                    dialog.show();
+                }else{
+                    String status = "ยังไม่คืน";
+
+                    final User user = new User(0, name , lastname , address ,status);
 
 
-             AppExecutors executors = new AppExecutors();
-             executors.diskIO().execute(new Runnable() {
-                 @Override
-                 public void run() {
-                     AppDatabase db = AppDatabase.getInstance(InsertDataActivity.this);
-                     db.userDao().insertData(user);
-                     finish();
-                 }
-             });
+                    AppExecutors executors = new AppExecutors();
+                    executors.diskIO().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            AppDatabase db = AppDatabase.getInstance(InsertDataActivity.this);
+                            db.userDao().insertData(user);
+                            finish();
+                        }
+                    });
+                }
+
             }
         });
     }

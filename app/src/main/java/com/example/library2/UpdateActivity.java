@@ -23,7 +23,6 @@ public class UpdateActivity extends AppCompatActivity {
 
         final EditText nameEditText = findViewById(R.id.name_edit_text);
         final EditText lastNameEditText = findViewById(R.id.last_name_edit_text);
-        final EditText addressEditText = findViewById(R.id.address_edit_text);
         final CheckBox borrowBookCheckBox = findViewById(R.id.is_borrow_check_box);
         final Button updateButton = findViewById(R.id.update_button);
 
@@ -33,29 +32,37 @@ public class UpdateActivity extends AppCompatActivity {
                 final String name = nameEditText.getText().toString();
                 final String lastname = lastNameEditText.getText().toString();
 
-                final String status;
-                if(borrowBookCheckBox.isChecked()){
-                     status = "คืนแล้ว";
+                if(name.length() == 0 || lastname.length() == 0){
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(UpdateActivity.this);
+                    dialog.setMessage("กรุณากรอกข้อมูล");
+                    dialog.setPositiveButton("Ok" , null);
+                    dialog.show();
                 }else {
-                     status = "ยังไม่คืน";
-                }
-                AppExecutors executors = new AppExecutors();
-                executors.diskIO().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        AppDatabase db = AppDatabase.getInstance(UpdateActivity.this);
-                        db.userDao().updateUsers(name ,lastname , status);
+                    final String status;
+                    if(borrowBookCheckBox.isChecked()){
+                        status = "คืนแล้ว";
+                    }else {
+                        status = "ยังไม่คืน";
+                    }
+                    AppExecutors executors = new AppExecutors();
+                    executors.diskIO().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            AppDatabase db = AppDatabase.getInstance(UpdateActivity.this);
+                            db.userDao().updateUsers(name ,lastname , status);
 
-                    }
-                });
-                executors.mainThread().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(UpdateActivity.this,ShowDataActivity.class);
-                        startActivity(intent);
-                    }
-                });
-            }
+                        }
+                    });
+                    executors.mainThread().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(UpdateActivity.this,ShowDataActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                }
+
         });
 
 

@@ -16,11 +16,7 @@ import com.example.library2.util.AppExecutors;
 
 public class ShowDataActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    @Override
-    protected void onResume(){
-        super.onResume();
 
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

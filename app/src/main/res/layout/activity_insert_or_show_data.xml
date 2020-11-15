@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:background="#64F4B4"
     tools:context=".InsertOrShowDataActivity">
 
     <TextView
@@ -23,6 +23,7 @@
 
     <Button
         android:id="@+id/update_button"
+        style="@style/ButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -36,6 +37,7 @@
 
     <Button
         android:id="@+id/show_data_button"
+        style="@style/ButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -52,6 +54,7 @@
 
     <Button
         android:id="@+id/back_button"
+        style="@style/ButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -62,6 +65,7 @@
 
     <Button
         android:id="@+id/update_data_button"
+        style="@style/ButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
